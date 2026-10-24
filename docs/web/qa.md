@@ -14,6 +14,10 @@
 - [ ] Navegación con teclado
 - [ ] Foco visible
 - [ ] Formularios: validación, error y éxito
+- [ ] API: métodos, códigos de estado, validación, auth y errores
+- [ ] Webhooks: firma, idempotencia y reintentos
+- [ ] Cookies, headers, CORS y secretos
+- [ ] Migraciones y rollback (si aplica)
 - [ ] Contraste y textos alternativos
 - [ ] Consola sin errores
 - [ ] Imágenes y fuentes optimizadas
@@ -31,6 +35,7 @@
 ## Tests automatizados
 
 - `tests/smoke.spec.ts`:
+- `tests/backend/**`: API, auth, permisos, pagos y migraciones.
 - Otros:
 
 ## Aprobación

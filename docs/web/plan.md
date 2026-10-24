@@ -8,6 +8,7 @@
 | Arquitectura | web-architect | Pendiente | `docs/web/architecture.md` |
 | Diseño | web-designer | Pendiente | `docs/web/design.md` |
 | Copy | web-copywriter | Pendiente | `docs/web/copy.md` |
+| Backend | web-backend | Pendiente | Código + `docs/web/backend.md` |
 | Implementación | web-builder | Pendiente | Código + build |
 | QA | web-qa | Pendiente | `docs/web/qa.md` + tests |
 | Revisión | web-reviewer | Pendiente | Informe |
@@ -18,6 +19,8 @@
 - [ ] Brief aprobado
 - [ ] Arquitectura y diseño aprobados
 - [ ] Primera página implementada
+- [ ] Backend definido (si aplica)
+- [ ] Backend implementado y probado (si aplica)
 - [ ] Sitio completo
 - [ ] QA y revisión aprobados
 - [ ] Preview aprobado
