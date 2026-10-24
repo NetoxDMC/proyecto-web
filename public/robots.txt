@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# Reemplaza el dominio por el del sitio antes de publicar.
-Sitemap: https://example.com/sitemap-index.xml

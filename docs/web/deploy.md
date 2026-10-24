@@ -5,8 +5,9 @@
 - Build de producción: OK.
 - `check`, `lint` y tests: OK.
 - Smoke test local del build: OK (home, `robots.txt` y `sitemap-index.xml` responden 200).
-- Repositorio remoto: pendiente.
-- Plataforma: pendiente.
+- Build con `BASE_PATH=/proyecto-web`: OK (canonical, `robots.txt` y sitemap bajo la subruta).
+- Plataforma elegida: **GitHub Pages**.
+- Repositorio remoto: pendiente de autenticación y creación.
 - Producción: no desplegada.
 
 ## Antes de desplegar
@@ -17,7 +18,8 @@
 - [ ] `npm test`
 - [ ] `npm audit --audit-level=high`
 - [ ] `PUBLIC_SITE_URL` con el dominio real.
-- [ ] `public/robots.txt` con el dominio real.
+- [ ] `BASE_PATH` con la subruta real si aplica.
+- [ ] `robots.txt` generado con el sitemap correcto.
 - [ ] Preview revisado y aprobado.
 - [ ] Autorización explícita para producción.
 
@@ -25,7 +27,8 @@
 
 | Variable | Ejemplo | Entorno |
 | --- | --- | --- |
-| `PUBLIC_SITE_URL` | `https://tudominio.com` | Producción y preview |
+| `PUBLIC_SITE_URL` | `https://usuario.github.io` | Producción y preview |
+| `BASE_PATH` | `/proyecto-web` | GitHub Pages de proyecto |
 
 No subas `.env` al repositorio. Los secretos de backend van solo en el panel de la plataforma.
 
@@ -60,9 +63,22 @@ No subas `.env` al repositorio. Los secretos de backend van solo en el panel de 
 
 ### GitHub Pages
 
-1. El sitio es estático; revisar `site` y `base` en `astro.config.mjs` si se publica en un subdirectorio.
-2. Crear un workflow con `actions/upload-pages-artifact` y `actions/deploy-pages`.
-3. Configurar el dominio o la URL de Pages en `PUBLIC_SITE_URL` y `robots.txt`.
+El workflow `.github/workflows/pages.yml` está preparado para publicar en cada push a `main`.
+
+1. Crear el repositorio remoto y subir la rama `main`.
+2. En **Settings → Pages**, usar **GitHub Actions** como fuente.
+3. El workflow ejecuta `check`, `lint`, tests, build y despliegue.
+4. Calcula automáticamente:
+   - `PUBLIC_SITE_URL=https://<owner>.github.io`
+   - `BASE_PATH=/<repo>` para un repo de proyecto, o `/` para `<owner>.github.io`.
+5. `robots.txt` se genera desde `src/pages/robots.txt.ts` con la URL correcta del sitemap.
+6. Comprobar la URL publicada y el estado del workflow en **Actions**.
+
+URL esperada para un repo de proyecto:
+
+```text
+https://<owner>.github.io/<repo>/
+```
 
 ## Smoke test después del despliegue
 

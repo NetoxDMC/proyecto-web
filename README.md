@@ -25,7 +25,8 @@ npm run test:ui   # Playwright en modo UI
 ## Configuración del sitio
 
 - `PUBLIC_SITE_URL` en `.env` define el dominio canónico y el sitemap. Sin valor se usa `https://example.com`.
-- Reemplaza el dominio en `public/robots.txt` antes de publicar.
+- `BASE_PATH` define la subruta de despliegue. Para GitHub Pages de proyecto usa `/nombre-del-repositorio`.
+- `robots.txt` se genera en el build desde `src/pages/robots.txt.ts` y apunta al sitemap correcto.
 - El sitemap se genera en el build con `@astrojs/sitemap` (`sitemap-index.xml`).
 
 ## Backend
@@ -96,11 +97,16 @@ npm audit
 
 La checklist completa está en `AGENTS.md`.
 
-## Despliegue
+## Despliegue en GitHub Pages
 
-El proyecto puede desplegarse en Vercel, Netlify o Cloudflare Pages. Antes de producción:
+El workflow `.github/workflows/pages.yml` ejecuta checks, tests, build y publica en GitHub Pages en cada push a `main`.
 
-1. Ejecutar build y tests.
-2. Revisar el preview.
-3. Comprobar formularios, enlaces, HTTPS y metadatos.
-4. Autorizar el despliegue.
+1. Crea un repositorio en GitHub.
+2. Sube el proyecto a la rama `main`.
+3. En **Settings → Pages → Build and deployment**, selecciona **GitHub Actions**.
+4. El workflow calcula `PUBLIC_SITE_URL` y `BASE_PATH` automáticamente:
+   - Repo de proyecto: `https://<usuario>.github.io/<repo>/`, con `BASE_PATH=/<repo>`.
+   - Repo `<usuario>.github.io`: `https://<usuario>.github.io/`, con `BASE_PATH=/`.
+5. El primer despliegue puede tardar unos minutos. Revisa la pestaña **Actions**.
+
+Para otros destinos (Vercel, Netlify o Cloudflare Pages), la checklist está en `docs/web/deploy.md`.
