@@ -162,6 +162,7 @@ Una tarea termina cuando:
 - `docs/web/copy.md`: textos, CTAs y metadatos.
 - `docs/web/backend.md`: API, datos, auth, pagos, seguridad y migraciones.
 - `docs/web/qa.md`: pruebas, hallazgos y evidencias.
+- `docs/web/deploy.md`: entornos, variables, smoke test y rollback.
 
 ## Cómo empezar
 

@@ -59,6 +59,7 @@ Las decisiones del proyecto se guardan en `docs/web/`:
 - `copy.md`
 - `backend.md`
 - `qa.md`
+- `deploy.md`
 
 ## Estructura
 

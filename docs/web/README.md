@@ -11,6 +11,7 @@ Este directorio guarda las decisiones del proyecto para que todos los agentes tr
 5. `copy.md`: textos, CTAs y metadatos.
 6. `backend.md`: API, datos, auth, pagos, seguridad y migraciones.
 7. `qa.md`: pruebas, hallazgos y evidencias.
+8. `deploy.md`: entornos, variables, smoke test y rollback.
 
 ## Estado
 
@@ -24,5 +25,6 @@ Este directorio guarda las decisiones del proyecto para que todos los agentes tr
 - [ ] Implementación terminada
 - [ ] QA aprobado
 - [ ] Revisión aprobada
+- [ ] Despliegue preparado
 - [ ] Preview aprobado
 - [ ] Despliegue autorizado
