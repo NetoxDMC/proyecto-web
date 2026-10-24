@@ -15,16 +15,16 @@ Este directorio guarda las decisiones del proyecto para que todos los agentes tr
 
 ## Estado
 
-- [ ] Brief aprobado
-- [ ] Plan aprobado
-- [ ] Arquitectura aprobada
-- [ ] Diseño aprobado
-- [ ] Copy aprobado
-- [ ] Backend definido (si aplica)
-- [ ] Backend implementado (si aplica)
-- [ ] Implementación terminada
-- [ ] QA aprobado
-- [ ] Revisión aprobada
-- [ ] Despliegue preparado
-- [ ] Preview aprobado
-- [ ] Despliegue autorizado
+- [x] Brief aprobado
+- [x] Plan aprobado
+- [x] Arquitectura aprobada
+- [x] Diseño aprobado
+- [x] Copy aprobado
+- [x] Backend definido (no aplica)
+- [x] Backend implementado (no aplica)
+- [x] Implementación terminada
+- [x] QA aprobado
+- [x] Revisión aprobada
+- [x] Despliegue preparado
+- [x] Preview aprobado
+- [x] Despliegue autorizado

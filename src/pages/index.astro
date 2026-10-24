@@ -1,81 +1,464 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const features = [
+const menu = [
   {
-    title: 'Diseño responsive',
-    description: 'Mobile-first, con breakpoints probados en 360, 768, 1024 y 1440 px.',
+    tag: 'Favorito',
+    name: 'Flat white de origen',
+    description: 'Etiopía Guji con leche de vaca de proximidad. Notas de melocotón, cacao y jazmín.',
+    price: '3,20 €',
+    note: 'Café de especialidad',
   },
   {
-    title: 'SEO y accesibilidad',
-    description: 'HTML semántico, metadatos, jerarquía de headings y navegación con teclado.',
+    tag: 'De temporada',
+    name: 'Tostada de temporada',
+    description: 'Pan de masa madre, ricotta, tomate asado, albahaca y aceite de oliva virgen extra.',
+    price: '8,50 €',
+    note: 'Vegetariana',
   },
   {
-    title: 'Tests con Playwright',
-    description: 'Flujos críticos cubiertos y capturas para revisar el resultado visual.',
-  },
-  {
-    title: 'Despliegue con preview',
-    description: 'Build reproducible, variables de entorno y smoke test antes de producción.',
+    tag: 'Dulce',
+    name: 'Pancakes de miso',
+    description: 'Mantequilla de miso, sirope de arce y frutos rojos de temporada. Para compartir o no.',
+    price: '9,00 €',
+    note: 'Sin prisa',
   },
 ];
+
+const classics = [
+  { name: 'Espresso', price: '2,20 €' },
+  { name: 'Filtrado V60', price: '3,80 €' },
+  { name: 'Matcha latte', price: '4,20 €' },
+  { name: 'Croissant de almendra', price: '3,50 €' },
+];
+
+const testimonials = [
+  {
+    quote: 'El mejor flat white que he tomado en València. Y la tostada de temporada, otro nivel.',
+    name: 'Clara M.',
+    role: 'vecina del barrio',
+  },
+  {
+    quote: 'Un sitio bonito, tranquilo y con luz. Me quedé a trabajar dos horas y nadie me metió prisa.',
+    name: 'Diego R.',
+    role: 'diseñador freelance',
+  },
+  {
+    quote: 'Los pancakes de miso son una locura. Volvería solo por ellos.',
+    name: 'Lucía P.',
+    role: 'brunch lover',
+  },
+];
+
+const hours = [
+  { days: 'Martes a viernes', time: '08:30 — 19:00' },
+  { days: 'Sábado y domingo', time: '09:00 — 20:00' },
+  { days: 'Lunes', time: 'Cerrado' },
+];
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CafeOrCoffeeShop',
+  name: 'Nébula Café',
+  description:
+    'Café de especialidad y brunch de temporada en el centro de València. Negocio ficticio de demostración.',
+  url: new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString(),
+  email: 'hola@nebulacafe.test',
+  priceRange: '€€',
+  servesCuisine: ['Café de especialidad', 'Brunch'],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Carrer de la Llum, 18',
+    addressLocality: 'València',
+    postalCode: '46001',
+    addressCountry: 'ES',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:30',
+      closes: '19:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Saturday', 'Sunday'],
+      opens: '09:00',
+      closes: '20:00',
+    },
+  ],
+};
 ---
 
-<Layout
-  title="Mi sitio web | Base Astro + Tailwind"
-  description="Base de sitio web con Astro, Tailwind CSS, Playwright y un equipo de agentes para construir y revisar."
->
-  <section class="py-24">
-    <p class="text-sm font-medium uppercase tracking-widest text-emerald-400">Bienvenido</p>
-    <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
-      Tu próxima web empieza aquí.
-    </h1>
-    <p class="mt-6 max-w-2xl text-lg text-slate-300">
-      Base lista para construir con Astro, Tailwind CSS y Playwright. El equipo de agentes se encarga
-      del brief, la arquitectura, el diseño, el copy, la implementación, el QA y el despliegue.
-    </p>
-    <div class="mt-10 flex flex-wrap gap-4">
-      <a
-        href="#contacto"
-        class="rounded-full bg-emerald-500 px-6 py-3 font-semibold text-slate-950 transition hover:bg-emerald-400"
-      >
-        Empezar
-      </a>
-      <a
-        href="#caracteristicas"
-        class="rounded-full border border-white/15 px-6 py-3 font-semibold text-slate-100 transition hover:border-white/30"
-      >
-        Ver características
-      </a>
+<Layout>
+  <section class="relative overflow-hidden pb-16 pt-12 sm:pb-24 sm:pt-20">
+    <div class="grid items-center gap-14 lg:grid-cols-[1.12fr_0.88fr]">
+      <div>
+        <p
+          class="inline-flex items-center gap-2 rounded-full border border-line bg-paper px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-mocha"
+        >
+          <span class="h-2 w-2 rounded-full bg-coral" aria-hidden="true"></span>
+          Café de especialidad · València
+        </p>
+
+        <h1
+          class="mt-6 max-w-3xl font-display text-5xl leading-[0.94] tracking-tight text-ink sm:text-7xl lg:text-8xl"
+        >
+          Brunch lento,<br />
+          <span class="italic text-coral-dark">café de origen.</span>
+        </h1>
+
+        <p class="mt-6 max-w-xl text-lg leading-8 text-mocha">
+          Un rincón luminoso en el centro de València para tomar café de especialidad, brunch de
+          temporada y quedarte un poco más de la cuenta.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="#menu"
+            class="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-cream transition hover:bg-mocha"
+          >
+            Ver el menú
+          </a>
+          <a
+            href="#visitanos"
+            class="inline-flex min-h-11 items-center justify-center rounded-full border border-line bg-paper px-6 py-3 text-sm font-semibold text-ink transition hover:border-mocha"
+          >
+            Reservar mesa
+          </a>
+        </div>
+
+        <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-mocha">
+          <span class="flex items-center gap-2">
+            <span class="text-coral-dark" aria-hidden="true">★★★★★</span>
+            <span>4,9 de 5 · 128 reseñas</span>
+          </span>
+          <span>A 4 min del Mercat Central</span>
+        </div>
+      </div>
+
+      <div class="relative mx-auto w-full max-w-md lg:max-w-none">
+        <div class="absolute -inset-4 rounded-[2.5rem] bg-sand/60 blur-2xl" aria-hidden="true"></div>
+
+        <div
+          class="relative overflow-hidden rounded-[2rem] border border-line bg-paper p-6 shadow-[0_24px_80px_-32px_rgba(36,27,23,0.45)] sm:p-8"
+        >
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.3em] text-mocha">
+                Hoy en la barra
+              </p>
+              <p class="mt-2 font-display text-3xl">Etiopía Guji</p>
+            </div>
+            <span class="rounded-full bg-coral/15 px-3 py-1 text-xs font-semibold text-coral-dark">
+              V60
+            </span>
+          </div>
+
+          <div
+            class="relative mt-6 aspect-square overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-[#e8d6bf] via-[#f1e5d4] to-[#d9c2a7]"
+          >
+            <svg
+              class="absolute inset-0 h-full w-full"
+              viewBox="0 0 400 400"
+              fill="none"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle cx="200" cy="180" r="132" fill="#f7f1e7" opacity="0.55"></circle>
+              <ellipse cx="200" cy="316" rx="112" ry="20" fill="#6f4b3b" opacity="0.14"></ellipse>
+              <path
+                d="M124 166h152v70c0 48-34 78-76 78s-76-30-76-78v-70Z"
+                fill="#241b17"></path>
+              <path
+                d="M276 184h18c24 0 40 15 40 36s-16 36-40 36h-18"
+                stroke="#241b17"
+                stroke-width="16"
+                stroke-linecap="round"></path>
+              <path
+                d="M148 202h104v38c0 32-23 52-52 52s-52-20-52-52v-38Z"
+                fill="#e76f51"></path>
+              <path
+                d="M162 142c-10-18 10-24 0-42M200 142c-10-18 10-24 0-42M238 142c-10-18 10-24 0-42"
+                stroke="#6f4b3b"
+                stroke-width="7"
+                stroke-linecap="round"
+                opacity="0.55"></path>
+              <circle cx="92" cy="110" r="14" fill="#6f7f63" opacity="0.35"></circle>
+              <circle cx="330" cy="100" r="20" fill="#e76f51" opacity="0.25"></circle>
+              <path
+                d="M310 282c18-16 38-16 52-4-14 14-34 18-52 4Z"
+                fill="#6f7f63"
+                opacity="0.45"></path>
+            </svg>
+          </div>
+
+          <div class="mt-6 flex items-end justify-between gap-4 border-t border-line pt-5">
+            <div>
+              <p class="text-[11px] uppercase tracking-[0.2em] text-mocha">Notas</p>
+              <p class="mt-1 text-sm font-medium">Melocotón · cacao · jazmín</p>
+            </div>
+            <p class="font-display text-2xl">3,80 €</p>
+          </div>
+        </div>
+
+        <div
+          class="absolute -bottom-5 left-5 hidden rounded-2xl border border-line bg-cream px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-mocha shadow-lg sm:block"
+        >
+          Tueste de la semana
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="caracteristicas" class="border-t border-white/10 py-16">
-    <h2 class="text-2xl font-semibold tracking-tight">Lo que ya está resuelto</h2>
-    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+  <section class="border-y border-line bg-paper/70 py-4">
+    <div
+      class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-mocha"
+    >
+      <span>Café de origen</span>
+      <span class="text-coral-dark" aria-hidden="true">✦</span>
+      <span>Brunch de temporada</span>
+      <span class="text-coral-dark" aria-hidden="true">✦</span>
+      <span>Repostería artesanal</span>
+      <span class="text-coral-dark" aria-hidden="true">✦</span>
+      <span>Sin prisa</span>
+    </div>
+  </section>
+
+  <section id="menu" class="py-20 sm:py-28">
+    <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-coral-dark">La carta</p>
+        <h2 class="mt-3 font-display text-4xl tracking-tight sm:text-5xl">
+          Cosas ricas, sin prisa.
+        </h2>
+      </div>
+      <p class="max-w-sm text-sm leading-6 text-mocha">
+        Café de especialidad, pan de masa madre y platos que cambian con lo que trae la temporada.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-5 md:grid-cols-3">
       {
-        features.map((feature) => (
-          <article class="rounded-2xl border border-white/10 bg-white/5 p-6">
-            <h3 class="font-semibold text-white">{feature.title}</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-300">{feature.description}</p>
+        menu.map((item) => (
+          <article class="group flex flex-col rounded-[1.75rem] border border-line bg-paper p-6 transition hover:-translate-y-1 hover:shadow-xl">
+            <div class="flex items-start justify-between gap-4">
+              <span class="rounded-full bg-sand px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-mocha">
+                {item.tag}
+              </span>
+              <span class="font-display text-2xl">{item.price}</span>
+            </div>
+            <h3 class="mt-8 font-display text-2xl">{item.name}</h3>
+            <p class="mt-2 flex-1 text-sm leading-6 text-mocha">{item.description}</p>
+            <p class="mt-6 border-t border-line pt-4 text-[10px] uppercase tracking-[0.2em] text-sage">
+              {item.note}
+            </p>
           </article>
         ))
       }
     </div>
-  </section>
 
-  <section id="contacto" class="border-t border-white/10 py-16">
-    <div class="rounded-3xl border border-emerald-400/20 bg-emerald-400/5 p-8 sm:p-12">
-      <h2 class="text-2xl font-semibold tracking-tight">¿Empezamos?</h2>
-      <p class="mt-3 max-w-xl text-slate-300">
-        Cuéntale el proyecto a <strong>web-lead</strong> y el equipo se encarga del resto.
-      </p>
-      <a
-        href="mailto:hola@ejemplo.com"
-        class="mt-6 inline-flex rounded-full bg-white px-6 py-3 font-semibold text-slate-950 transition hover:bg-slate-200"
-      >
-        hola@ejemplo.com
-      </a>
+    <div
+      class="mt-8 grid gap-6 rounded-[1.75rem] border border-line bg-ink p-6 text-cream sm:p-8 lg:grid-cols-[0.8fr_1.2fr]"
+    >
+      <div>
+        <p class="text-[11px] uppercase tracking-[0.3em] text-coral">También en la barra</p>
+        <h3 class="mt-3 font-display text-3xl">Clásicos que nunca fallan.</h3>
+      </div>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {
+          classics.map((item) => (
+            <li class="flex items-baseline gap-3 border-b border-cream/15 pb-3">
+              <span class="text-sm">{item.name}</span>
+              <span class="h-px flex-1 bg-cream/15" aria-hidden="true"></span>
+              <span class="font-display text-lg text-coral">{item.price}</span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
+
+  <section id="nosotros" class="border-t border-line py-20 sm:py-28">
+    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div class="relative">
+        <div
+          class="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-line bg-gradient-to-br from-[#d9c2a7] via-[#f1e5d4] to-[#e8d6bf]"
+        >
+          <div class="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-coral/30" aria-hidden="true">
+          </div>
+          <div
+            class="absolute -bottom-20 -left-16 h-72 w-72 rounded-full bg-sage/30"
+            aria-hidden="true"
+          >
+          </div>
+          <div class="absolute inset-0 flex flex-col justify-between p-8 sm:p-10">
+            <span class="text-[10px] font-semibold uppercase tracking-[0.3em] text-mocha">
+              Nébula Café
+            </span>
+            <p class="font-display text-5xl leading-[0.92] text-ink sm:text-6xl">
+              Café,<br />brunch<br />
+              <em class="text-coral-dark">y calma.</em>
+            </p>
+            <span class="text-[10px] font-semibold uppercase tracking-[0.3em] text-mocha">
+              València · desde 2019
+            </span>
+          </div>
+        </div>
+        <div
+          class="absolute -bottom-5 right-5 rounded-2xl border border-line bg-cream px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-mocha shadow-lg"
+        >
+          Desde 2019
+        </div>
+      </div>
+
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-coral-dark">
+          Nuestra historia
+        </p>
+        <h2 class="mt-3 font-display text-4xl tracking-tight sm:text-5xl">
+          Un lugar para bajar el ritmo.
+        </h2>
+        <p class="mt-5 text-base leading-7 text-mocha">
+          Nébula nació con una idea sencilla: que el café no sea una parada rápida, sino una
+          pequeña pausa. Trabajamos con tostadores pequeños, productores locales y una carta que
+          cambia cuando cambia la temporada.
+        </p>
+        <blockquote class="mt-8 border-l-2 border-coral pl-5 font-display text-2xl leading-8">
+          “Si vienes con prisa, te lo ponemos para llevar. Si no, quédate.”
+        </blockquote>
+        <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-line pt-6">
+          <div>
+            <dt class="text-[10px] uppercase tracking-[0.2em] text-mocha">Fincas</dt>
+            <dd class="mt-1 font-display text-2xl">12</dd>
+          </div>
+          <div>
+            <dt class="text-[10px] uppercase tracking-[0.2em] text-mocha">Tueste</dt>
+            <dd class="mt-1 font-display text-2xl">Semanal</dd>
+          </div>
+          <div>
+            <dt class="text-[10px] uppercase tracking-[0.2em] text-mocha">Prisa</dt>
+            <dd class="mt-1 font-display text-2xl">Ninguna</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-line py-20 sm:py-28">
+    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-coral-dark">Lo que dicen</p>
+    <h2 class="mt-3 max-w-2xl font-display text-4xl tracking-tight sm:text-5xl">
+      La mejor reseña es que vuelvas.
+    </h2>
+
+    <div class="mt-10 grid gap-5 md:grid-cols-3">
+      {
+        testimonials.map((testimonial) => (
+          <figure class="rounded-[1.5rem] border border-line bg-paper p-6">
+            <div class="flex items-center gap-2">
+              <span class="text-coral-dark" aria-hidden="true">
+                ★★★★★
+              </span>
+              <span class="sr-only">5 de 5 estrellas</span>
+            </div>
+            <blockquote class="mt-4 font-display text-xl leading-8">
+              “{testimonial.quote}”
+            </blockquote>
+            <figcaption class="mt-6 text-sm">
+              <span class="font-semibold">{testimonial.name}</span>
+              <span class="text-mocha"> · {testimonial.role}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+    <p class="mt-5 text-xs text-mocha/80">Reseñas ficticias creadas para esta demostración.</p>
+  </section>
+
+  <section id="visitanos" class="border-t border-line py-20 sm:py-28">
+    <div class="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.28em] text-coral-dark">Visítanos</p>
+        <h2 class="mt-3 font-display text-4xl tracking-tight sm:text-5xl">Te guardamos sitio.</h2>
+        <p class="mt-5 max-w-lg text-base leading-7 text-mocha">
+          Estamos en el centro, a un paseo del Mercat Central. Ven a desayunar, a trabajar un rato o
+          simplemente a tomar algo rico.
+        </p>
+
+        <div class="mt-8 grid gap-8 sm:grid-cols-2">
+          <div>
+            <h3 class="text-[11px] font-semibold uppercase tracking-[0.25em] text-mocha">Dónde</h3>
+            <p class="mt-3 text-sm leading-6">
+              Carrer de la Llum, 18<br />46001 València
+            </p>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Carrer+de+la+Llum+18+Valencia"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Abrir la ubicación en Google Maps en una pestaña nueva"
+              class="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-coral-dark underline decoration-coral/40 underline-offset-4 transition hover:decoration-coral-dark"
+            >
+              Abrir en Maps ↗
+            </a>
+          </div>
+          <div>
+            <h3 class="text-[11px] font-semibold uppercase tracking-[0.25em] text-mocha">Horario</h3>
+            <dl class="mt-3 space-y-2 text-sm">
+              {
+                hours.map((item) => (
+                  <div class="flex items-baseline justify-between gap-3 border-b border-line/70 pb-2">
+                    <dt>{item.days}</dt>
+                    <dd class="text-mocha">{item.time}</dd>
+                  </div>
+                ))
+              }
+            </dl>
+          </div>
+        </div>
+
+        <a
+          href="mailto:hola@nebulacafe.test?subject=Reserva%20en%20N%C3%A9bula"
+          class="mt-8 inline-flex min-h-11 items-center justify-center rounded-full bg-coral px-6 py-3 text-sm font-semibold text-ink transition hover:bg-coral-dark hover:text-cream"
+        >
+          Reservar por email
+        </a>
+      </div>
+
+      <div class="rounded-[2rem] border border-line bg-paper p-6">
+        <div
+          class="relative aspect-square overflow-hidden rounded-[1.5rem] bg-[#e8dccb]"
+          aria-hidden="true"
+        >
+          <div
+            class="absolute inset-0 opacity-60"
+            style="background-image: linear-gradient(#c9b79f 1px, transparent 1px), linear-gradient(90deg, #c9b79f 1px, transparent 1px); background-size: 42px 42px;"
+          >
+          </div>
+          <div class="absolute left-[18%] top-0 h-full w-9 -rotate-12 bg-cream/80"></div>
+          <div class="absolute left-0 top-[62%] h-8 w-full rotate-3 bg-cream/70"></div>
+          <div class="absolute left-[72%] top-0 h-full w-5 rotate-6 bg-cream/60"></div>
+          <div class="absolute left-[10%] top-[18%] h-24 w-24 rounded-full bg-sage/20"></div>
+          <div class="absolute bottom-[10%] right-[8%] h-28 w-28 rounded-full bg-coral/20"></div>
+          <div
+            class="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-coral font-display text-2xl text-ink shadow-lg"
+          >
+            N
+          </div>
+        </div>
+        <div class="mt-5 flex items-center justify-between gap-4">
+          <div>
+            <p class="text-[10px] font-semibold uppercase tracking-[0.25em] text-mocha">
+              Dirección ficticia
+            </p>
+            <p class="mt-1 text-sm font-semibold">Carrer de la Llum, 18</p>
+          </div>
+          <span class="rounded-full bg-sage/15 px-3 py-1 text-xs font-semibold text-sage">
+            Centro
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
 </Layout>

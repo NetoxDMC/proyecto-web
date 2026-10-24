@@ -4,11 +4,13 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  siteName?: string;
 }
 
 const {
-  title = 'Mi sitio web',
-  description = 'Sitio web creado con Astro y Tailwind CSS.',
+  title = 'Nébula Café | Brunch y café de especialidad en València',
+  description = 'Café de especialidad, brunch de temporada y un rincón luminoso en el centro de València. Un negocio ficticio de demostración.',
+  siteName = 'Nébula Café',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
@@ -22,36 +24,131 @@ const base = import.meta.env.BASE_URL.endsWith('/')
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f1e7" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:site_name" content="Mi sitio" />
+    <meta property="og:site_name" content={siteName} />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
-    <link rel="icon" href={`${base}favicon.ico`} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
-    <header class="border-b border-white/10">
-      <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href={base} class="font-semibold tracking-tight">Mi sitio</a>
-        <a href={`${base}#contacto`} class="text-sm text-slate-300 hover:text-white">Contacto</a>
+  <body class="min-h-screen bg-cream text-ink antialiased">
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-cream"
+    >
+      Saltar al contenido
+    </a>
+
+    <header class="sticky top-0 z-50 border-b border-line/70 bg-cream/90 backdrop-blur">
+      <nav
+        class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8"
+        aria-label="Navegación principal"
+      >
+        <a href={base} class="group inline-flex items-center gap-3">
+          <span
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-ink text-cream transition group-hover:bg-mocha"
+          >
+            <svg
+              class="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <ellipse
+                cx="12"
+                cy="12"
+                rx="7.5"
+                ry="10"
+                transform="rotate(35 12 12)"
+                stroke="currentColor"
+                stroke-width="2"></ellipse>
+              <path
+                d="M7 17c3-3 3-7 10-10"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"></path>
+            </svg>
+          </span>
+          <span class="leading-none">
+            <span class="block font-display text-2xl tracking-tight">Nébula</span>
+            <span class="mt-1 block text-[10px] font-semibold uppercase tracking-[0.32em] text-mocha">
+              café
+            </span>
+          </span>
+        </a>
+
+        <div class="hidden items-center gap-7 text-sm font-medium text-mocha md:flex">
+          <a href={`${base}#menu`} class="transition hover:text-ink">Menú</a>
+          <a href={`${base}#nosotros`} class="transition hover:text-ink">Nosotros</a>
+          <a href={`${base}#visitanos`} class="transition hover:text-ink">Visítanos</a>
+        </div>
+
+        <a
+          href={`${base}#visitanos`}
+          class="inline-flex min-h-11 items-center justify-center rounded-full bg-coral px-5 py-2.5 text-sm font-semibold text-ink transition hover:bg-coral-dark hover:text-cream"
+        >
+          Reservar
+        </a>
       </nav>
     </header>
 
-    <main class="mx-auto max-w-5xl px-6">
+    <main id="contenido" class="mx-auto max-w-6xl px-5 sm:px-8">
       <slot />
     </main>
 
-    <footer class="border-t border-white/10">
-      <div class="mx-auto max-w-5xl px-6 py-8 text-sm text-slate-400">
-        © {new Date().getFullYear()} Mi sitio. Todos los derechos reservados.
+    <footer class="mt-20 border-t border-line bg-paper/60">
+      <div class="mx-auto grid max-w-6xl gap-8 px-5 py-10 sm:px-8 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+        <div>
+          <a href={base} class="font-display text-2xl tracking-tight">Nébula</a>
+          <p class="mt-3 max-w-sm text-sm leading-6 text-mocha">
+            Café de especialidad, brunch de temporada y un sitio donde quedarse un rato más.
+          </p>
+          <p class="mt-4 text-xs leading-5 text-mocha/80">
+            Nébula es un negocio ficticio creado para probar el flujo de agentes web.
+          </p>
+        </div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-mocha">Explorar</p>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li><a href={`${base}#menu`} class="transition hover:text-coral-dark">Menú</a></li>
+            <li>
+              <a href={`${base}#nosotros`} class="transition hover:text-coral-dark">Nosotros</a>
+            </li>
+            <li>
+              <a href={`${base}#visitanos`} class="transition hover:text-coral-dark">Visítanos</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.25em] text-mocha">Contacto</p>
+          <a
+            href="mailto:hola@nebulacafe.test"
+            class="mt-4 inline-block text-sm transition hover:text-coral-dark"
+          >
+            hola@nebulacafe.test
+          </a>
+          <p class="mt-3 text-sm leading-6 text-mocha">
+            Carrer de la Llum, 18<br />46001 València
+          </p>
+        </div>
+      </div>
+      <div class="border-t border-line">
+        <div
+          class="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-4 text-xs text-mocha sm:flex-row sm:items-center sm:justify-between sm:px-8"
+        >
+          <p>© {new Date().getFullYear()} Nébula Café. Demo ficticia.</p>
+          <p>Hecho con Astro + Tailwind CSS.</p>
+        </div>
       </div>
     </footer>
   </body>

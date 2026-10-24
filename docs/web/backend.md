@@ -1,93 +1,62 @@
-# Backend
+# Backend — Nébula Café
 
 ## Alcance
 
-- ¿Qué necesita el sitio? (formularios, cuentas, pagos, CMS, emails, etc.)
-- ¿Qué queda fuera?
-- [ ] No aplica: el sitio es estático y no necesita backend.
+- No aplica: el sitio es estático y no necesita backend.
+- No hay cuentas, base de datos, pagos, CMS ni formularios con persistencia.
+- El CTA de reserva usa un enlace `mailto:` ficticio.
+- Queda fuera de esta demo cualquier integración real de email, analítica o reservas.
 
 ## Stack y servicios
 
 | Pieza | Elección | Motivo |
 | --- | --- | --- |
-| API / servidor |  |  |
-| Base de datos |  |  |
-| Auth |  |  |
-| Pagos |  |  |
-| Email |  |  |
-| Storage |  |  |
-| Hosting |  |  |
-
-## Modelo de datos
-
-| Entidad | Campos | Relaciones | Índices | Sensibilidad |
-| --- | --- | --- | --- | --- |
-|  |  |  |  |  |
+| API / servidor | No aplica | Sitio estático |
+| Base de datos | No aplica | Sin datos persistentes |
+| Auth | No aplica | Sin cuentas |
+| Pagos | No aplica | Sin ventas online |
+| Email | `mailto:` | Demo sin backend |
+| Hosting | GitHub Pages | Publicación estática |
 
 ## API
 
-| Método | Ruta | Auth | Entrada | Salida | Errores |
-| --- | --- | --- | --- | --- | --- |
-|  |  |  |  |  |  |
+No hay endpoints de aplicación. `robots.txt` se prerenderiza en el build.
 
 ## Auth y permisos
 
-- Roles:
-- Sesiones y cookies:
-- CSRF:
-- Recuperación de cuenta:
-- MFA:
-- Autorización por recurso:
+No aplica.
 
 ## Pagos
 
-- Proveedor:
-- Productos y precios:
-- Webhooks:
-- Idempotencia:
-- Reembolsos:
-- Entorno de prueba:
+No aplica.
 
 ## Validación y errores
 
-- Esquema de validación:
-- Formato de error:
-- Códigos:
-- Logs (sin secretos):
+No aplica.
 
 ## Seguridad
 
-- Secretos y variables:
-- Rate limiting:
-- Límites de payload:
-- CORS:
-- Headers de seguridad:
-- SQL / NoSQL:
-- Webhooks:
-- Dependencias:
+- Sin secretos en cliente.
+- Sin formularios ni entradas de usuario.
+- Dependencias auditadas con `npm audit`.
+- El único enlace externo es Google Maps; no envía datos propios.
 
 ## Variables de entorno
 
 | Variable | Entorno | Uso | ¿Secreta? |
 | --- | --- | --- | --- |
-| `PUBLIC_SITE_URL` | Todos | Dominio público | No |
-|  |  |  |  |
+| `PUBLIC_SITE_URL` | Todos | Dominio canónico | No |
+| `BASE_PATH` | GitHub Pages | Subruta de publicación | No |
 
 ## Migraciones
 
-- Herramienta:
-- Comandos:
-- Rollback:
-- Datos de prueba:
+No aplica.
 
 ## Tests
 
-- Unitarios:
-- Integración:
-- E2E:
-- Seguridad:
+- E2E: `tests/smoke.spec.ts`.
+- Backend: no aplica.
 
 ## Riesgos y pendientes
 
-- [ ]  |
-- [ ]  |
+- [x] Ninguno para el alcance estático de la demo.

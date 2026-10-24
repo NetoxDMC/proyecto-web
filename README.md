@@ -1,9 +1,11 @@
-# Proyecto web
+# Nébula Café — demo web
 
-Base para construir sitios web con **Astro 7**, **Tailwind CSS 4**, **Playwright**, **ESLint** y **Prettier**.
+Landing ficticia de una cafetería de especialidad en València. Sirve como prueba real del flujo de agentes, el starter de **Astro 7**, **Tailwind CSS 4**, **Playwright**, **ESLint** y **Prettier**.
 
 - Repositorio: https://github.com/NetoxDMC/proyecto-web
 - Sitio publicado: https://netoxdmc.github.io/proyecto-web/
+
+> Nébula Café no existe. La dirección, el email y las reseñas son ficticios y solo se usan para probar el flujo completo de diseño, implementación, QA y despliegue.
 
 ## Requisitos
 
