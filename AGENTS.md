@@ -32,12 +32,18 @@ src/
 ├── components/      Componentes reutilizables
 ├── layouts/         Layouts de página
 ├── pages/           Rutas del sitio
+│   └── api/         Endpoints de servidor (si hay backend)
+├── actions/         Actions de Astro (si se usan)
+├── server/          Lógica de servidor
+├── db/              Esquema, cliente y migraciones
+├── types/           Tipos compartidos
 ├── styles/          Estilos globales y tokens
 └── content/         Contenido estructurado, si se usa
 
 public/              Assets estáticos
 tests/               Tests E2E de Playwright
-docs/web/            Brief, plan, arquitectura, diseño, copy y QA
+tests/backend/       Tests de integración de backend
+docs/web/            Brief, plan, arquitectura, diseño, copy, backend y QA
 ```
 
 ## Convenciones
@@ -57,11 +63,13 @@ docs/web/            Brief, plan, arquitectura, diseño, copy y QA
 2. **web-architect**: define sitemap, stack, estructura y riesgos en `docs/web/architecture.md`.
 3. **web-designer**: define tokens, tipografía, componentes y responsive en `docs/web/design.md`.
 4. **web-copywriter**: escribe textos, CTAs y metadatos en `docs/web/copy.md`.
-5. **web-builder**: implementa páginas y componentes; ejecuta build, lint y tests.
-6. **web-qa**: prueba en navegador y escribe tests en `tests/`; reporta en `docs/web/qa.md`.
-7. **web-reviewer**: revisa código, seguridad, SEO y mantenibilidad.
-8. **web-deployer**: prepara el despliegue, ejecuta preview y hace smoke test.
+5. **web-backend**: implementa API, datos, auth, permisos, pagos y seguridad; solo si el sitio es dinámico.
+6. **web-builder**: implementa páginas y componentes; consume el contrato del backend.
+7. **web-qa**: prueba en navegador y API; escribe tests en `tests/` y reporta en `docs/web/qa.md`.
+8. **web-reviewer**: revisa código, seguridad, SEO y mantenibilidad.
+9. **web-deployer**: prepara el despliegue, ejecuta preview y hace smoke test.
 
+Si el sitio es estático, omite `web-backend` y deja constancia en `docs/web/backend.md` (alcance: no aplica).
 No se despliega a producción sin confirmación explícita del usuario.
 
 ## Definition of Done
@@ -75,6 +83,11 @@ Una tarea termina cuando:
 - [ ] La página se ve bien en 360, 768, 1024 y 1440 px.
 - [ ] Se puede navegar con teclado y el foco es visible.
 - [ ] Los formularios validan y muestran errores claros.
+- [ ] Si hay backend, los endpoints validan entrada y devuelven errores consistentes.
+- [ ] Auth, permisos y sesiones están probados.
+- [ ] Los secretos no aparecen en cliente, logs ni repositorio.
+- [ ] Migraciones y rollback están documentados y probados.
+- [ ] `npm audit` no reporta vulnerabilidades críticas o altas sin justificar.
 - [ ] Cada página tiene `title`, meta description y canonical.
 - [ ] Open Graph y Twitter Card están configurados.
 - [ ] `sitemap.xml` y `robots.txt` existen si el sitio es público.
@@ -110,11 +123,27 @@ Una tarea termina cuando:
 - Fuentes con `font-display: swap`.
 - Evitar dependencias grandes sin justificación.
 
+## Backend
+
+- Solo si el sitio es dinámico. Si es estático, no añadir servidor innecesario.
+- En Astro, usar `src/pages/api/**` o actions; si se necesita SSR, añadir el adapter y documentarlo.
+- Validar toda entrada en servidor y devolver errores consistentes.
+- Datos: esquema versionado, migraciones reversibles y consultas parametrizadas.
+- Auth: sesiones seguras, CSRF, roles y permisos por recurso.
+- Pagos: webhooks firmados, idempotencia y nunca confiar en el cliente para el importe.
+- Tests de integración en `tests/backend/**`.
+
 ## Seguridad
 
 - Nunca subir secretos al repositorio.
 - Variables locales en `.env`; documentar en `.env.example`.
-- Validar formularios también en servidor si hay backend.
+- Validar toda entrada en servidor con un esquema (Zod o equivalente).
+- Autorizar por recurso y rol en servidor, no solo en la UI.
+- Cookies de sesión `HttpOnly`, `Secure` y `SameSite`; protección CSRF.
+- Consultas parametrizadas; nunca concatenar SQL.
+- Rate limiting y límites de payload en endpoints públicos.
+- Webhooks con verificación de firma e idempotencia.
+- Secretos solo en variables de servidor; nunca con prefijo `PUBLIC_`.
 - No usar HTML sin sanitizar.
 - Revisar dependencias antes de añadirlas.
 
@@ -131,6 +160,7 @@ Una tarea termina cuando:
 - `docs/web/architecture.md`: sitemap, stack, estructura y riesgos.
 - `docs/web/design.md`: dirección visual y sistema de diseño.
 - `docs/web/copy.md`: textos, CTAs y metadatos.
+- `docs/web/backend.md`: API, datos, auth, pagos, seguridad y migraciones.
 - `docs/web/qa.md`: pruebas, hallazgos y evidencias.
 
 ## Cómo empezar

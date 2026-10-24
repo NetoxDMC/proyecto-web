@@ -46,6 +46,16 @@ src/
 - Auth:
 - Pagos:
 
+## Backend
+
+- Necesario: sí / no
+- API:
+- Base de datos:
+- Auth:
+- Pagos:
+- Hosting:
+- Documento: `docs/web/backend.md`
+
 ## SEO
 
 - Titles y descriptions:

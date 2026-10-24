@@ -9,7 +9,8 @@ Este directorio guarda las decisiones del proyecto para que todos los agentes tr
 3. `architecture.md`: sitemap, stack, estructura y riesgos.
 4. `design.md`: dirección visual y sistema de diseño.
 5. `copy.md`: textos, CTAs y metadatos.
-6. `qa.md`: pruebas, hallazgos y evidencias.
+6. `backend.md`: API, datos, auth, pagos, seguridad y migraciones.
+7. `qa.md`: pruebas, hallazgos y evidencias.
 
 ## Estado
 
@@ -18,6 +19,8 @@ Este directorio guarda las decisiones del proyecto para que todos los agentes tr
 - [ ] Arquitectura aprobada
 - [ ] Diseño aprobado
 - [ ] Copy aprobado
+- [ ] Backend definido (si aplica)
+- [ ] Backend implementado (si aplica)
 - [ ] Implementación terminada
 - [ ] QA aprobado
 - [ ] Revisión aprobada

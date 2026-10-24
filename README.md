@@ -28,6 +28,10 @@ npm run test:ui   # Playwright en modo UI
 - Reemplaza el dominio en `public/robots.txt` antes de publicar.
 - El sitemap se genera en el build con `@astrojs/sitemap` (`sitemap-index.xml`).
 
+## Backend
+
+El starter es estático. Si el proyecto necesita API, cuentas, pagos o datos, `web-backend` añade el adapter/SSR, el esquema, los endpoints y las migraciones. El contrato y las variables se documentan en `docs/web/backend.md`.
+
 ## Equipo de agentes
 
 El proyecto está pensado para trabajarse con el combo de agentes web:
@@ -36,7 +40,8 @@ El proyecto está pensado para trabajarse con el combo de agentes web:
 - **web-architect**: sitemap, stack y estructura.
 - **web-designer**: dirección visual y sistema de diseño.
 - **web-copywriter**: textos, CTAs y SEO on-page.
-- **web-builder**: implementación.
+- **web-backend**: API, datos, auth, permisos, pagos y seguridad.
+- **web-builder**: implementación de UI.
 - **web-qa**: pruebas en navegador y tests.
 - **web-reviewer**: revisión de código y seguridad.
 - **web-deployer**: despliegue y smoke test.
@@ -52,6 +57,7 @@ Las decisiones del proyecto se guardan en `docs/web/`:
 - `architecture.md`
 - `design.md`
 - `copy.md`
+- `backend.md`
 - `qa.md`
 
 ## Estructura
@@ -61,11 +67,17 @@ src/
 ├── components/
 ├── layouts/
 ├── pages/
+│   └── api/
+├── actions/
+├── server/
+├── db/
+├── types/
 ├── styles/
 └── content/
 
 public/
 tests/
+tests/backend/
 docs/web/
 ```
 
@@ -78,6 +90,7 @@ npm run check
 npm run lint
 npm run build
 npm test
+npm audit
 ```
 
 La checklist completa está en `AGENTS.md`.
