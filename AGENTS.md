@@ -7,6 +7,11 @@
 - **Playwright** para tests E2E
 - **ESLint + Prettier** para calidad de código
 
+## Herramientas
+
+- **Playwright MCP** (`playwright_*`) para QA visual y pruebas en navegador.
+- Skills globales: `frontend-design`, `seo-aeo-best-practices`, `accessibility-scan`, `tdd`, `systematic-debugging` y `verification-before-completion`.
+
 ## Comandos
 
 | Comando | Qué hace |
