@@ -2,6 +2,9 @@
 
 Base para construir sitios web con **Astro 7**, **Tailwind CSS 4**, **Playwright**, **ESLint** y **Prettier**.
 
+- Repositorio: https://github.com/NetoxDMC/proyecto-web
+- Sitio publicado: https://netoxdmc.github.io/proyecto-web/
+
 ## Requisitos
 
 - Node.js 22 o superior.
@@ -99,7 +102,7 @@ La checklist completa está en `AGENTS.md`.
 
 ## Despliegue en GitHub Pages
 
-El workflow `.github/workflows/pages.yml` ejecuta checks, tests, build y publica en GitHub Pages en cada push a `main`.
+El workflow `.github/workflows/pages.yml` ejecuta checks, tests, build y publica en GitHub Pages en cada push a `main`. Este repositorio ya está conectado y publicado.
 
 1. Crea un repositorio en GitHub.
 2. Sube el proyecto a la rama `main`.

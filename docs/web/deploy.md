@@ -6,9 +6,12 @@
 - `check`, `lint` y tests: OK.
 - Smoke test local del build: OK (home, `robots.txt` y `sitemap-index.xml` responden 200).
 - Build con `BASE_PATH=/proyecto-web`: OK (canonical, `robots.txt` y sitemap bajo la subruta).
-- Plataforma elegida: **GitHub Pages**.
-- Repositorio remoto: pendiente de autenticación y creación.
-- Producción: no desplegada.
+- Plataforma: **GitHub Pages**.
+- Repositorio: https://github.com/NetoxDMC/proyecto-web
+- URL publicada: https://netoxdmc.github.io/proyecto-web/
+- Workflow de Pages: correcto.
+- Smoke test publicado: home 200, canonical, CSS, `robots.txt` y sitemap correctos; consola sin errores.
+- Producción: desplegada en GitHub Pages.
 
 ## Antes de desplegar
 
