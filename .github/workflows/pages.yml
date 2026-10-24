@@ -46,11 +46,13 @@ jobs:
       - name: Configurar URL y base de GitHub Pages
         run: |
           OWNER="${{ github.repository_owner }}"
+          OWNER_LOWER="${OWNER,,}"
           REPO="${{ github.event.repository.name }}"
+          REPO_LOWER="${REPO,,}"
 
-          echo "PUBLIC_SITE_URL=https://$OWNER.github.io" >> "$GITHUB_ENV"
+          echo "PUBLIC_SITE_URL=https://$OWNER_LOWER.github.io" >> "$GITHUB_ENV"
 
-          if [ "$REPO" = "$OWNER.github.io" ]; then
+          if [ "$REPO_LOWER" = "$OWNER_LOWER.github.io" ]; then
             echo "BASE_PATH=/" >> "$GITHUB_ENV"
           else
             echo "BASE_PATH=/$REPO" >> "$GITHUB_ENV"
