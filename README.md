@@ -22,6 +22,12 @@ npm test          # Playwright
 npm run test:ui   # Playwright en modo UI
 ```
 
+## Configuración del sitio
+
+- `PUBLIC_SITE_URL` en `.env` define el dominio canónico y el sitemap. Sin valor se usa `https://example.com`.
+- Reemplaza el dominio en `public/robots.txt` antes de publicar.
+- El sitemap se genera en el build con `@astrojs/sitemap` (`sitemap-index.xml`).
+
 ## Equipo de agentes
 
 El proyecto está pensado para trabajarse con el combo de agentes web:
