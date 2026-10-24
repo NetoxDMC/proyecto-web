@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Mi sitio web',
+  description = 'Sitio web creado con Astro y Tailwind CSS.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
+    <header class="border-b border-white/10">
+      <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <a href="/" class="font-semibold tracking-tight">Mi sitio</a>
+        <a href="#contacto" class="text-sm text-slate-300 hover:text-white">Contacto</a>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-6">
+      <slot />
+    </main>
+
+    <footer class="border-t border-white/10">
+      <div class="mx-auto max-w-5xl px-6 py-8 text-sm text-slate-400">
+        © {new Date().getFullYear()} Mi sitio. Todos los derechos reservados.
+      </div>
+    </footer>
+  </body>
+</html>

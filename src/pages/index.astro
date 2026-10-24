@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const features = [
+  {
+    title: 'Diseño responsive',
+    description: 'Mobile-first, con breakpoints probados en 360, 768, 1024 y 1440 px.',
+  },
+  {
+    title: 'SEO y accesibilidad',
+    description: 'HTML semántico, metadatos, jerarquía de headings y navegación con teclado.',
+  },
+  {
+    title: 'Tests con Playwright',
+    description: 'Flujos críticos cubiertos y capturas para revisar el resultado visual.',
+  },
+  {
+    title: 'Despliegue con preview',
+    description: 'Build reproducible, variables de entorno y smoke test antes de producción.',
+  },
+];
+---
+
+<Layout
+  title="Mi sitio web | Base Astro + Tailwind"
+  description="Base de sitio web con Astro, Tailwind CSS, Playwright y un equipo de agentes para construir y revisar."
+>
+  <section class="py-24">
+    <p class="text-sm font-medium uppercase tracking-widest text-emerald-400">Bienvenido</p>
+    <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">
+      Tu próxima web empieza aquí.
+    </h1>
+    <p class="mt-6 max-w-2xl text-lg text-slate-300">
+      Base lista para construir con Astro, Tailwind CSS y Playwright. El equipo de agentes se encarga
+      del brief, la arquitectura, el diseño, el copy, la implementación, el QA y el despliegue.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a
+        href="#contacto"
+        class="rounded-full bg-emerald-500 px-6 py-3 font-semibold text-slate-950 transition hover:bg-emerald-400"
+      >
+        Empezar
+      </a>
+      <a
+        href="#caracteristicas"
+        class="rounded-full border border-white/15 px-6 py-3 font-semibold text-slate-100 transition hover:border-white/30"
+      >
+        Ver características
+      </a>
+    </div>
+  </section>
+
+  <section id="caracteristicas" class="border-t border-white/10 py-16">
+    <h2 class="text-2xl font-semibold tracking-tight">Lo que ya está resuelto</h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      {
+        features.map((feature) => (
+          <article class="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <h3 class="font-semibold text-white">{feature.title}</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-300">{feature.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="contacto" class="border-t border-white/10 py-16">
+    <div class="rounded-3xl border border-emerald-400/20 bg-emerald-400/5 p-8 sm:p-12">
+      <h2 class="text-2xl font-semibold tracking-tight">¿Empezamos?</h2>
+      <p class="mt-3 max-w-xl text-slate-300">
+        Cuéntale el proyecto a <strong>web-lead</strong> y el equipo se encarga del resto.
+      </p>
+      <a
+        href="mailto:hola@ejemplo.com"
+        class="mt-6 inline-flex rounded-full bg-white px-6 py-3 font-semibold text-slate-950 transition hover:bg-slate-200"
+      >
+        hola@ejemplo.com
+      </a>
+    </div>
+  </section>
+</Layout>
